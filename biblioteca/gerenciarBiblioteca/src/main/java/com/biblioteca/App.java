@@ -1,4 +1,84 @@
-// package main.java.com.biblioteca;
+package main.java.com.biblioteca;
+import main.java.com.biblioteca.view.MembroView;
+
+public class App{
+    
+    public static void main(String[] args){
+        MembroView lista = new MembroView();
+
+        lista.adiciona("Lucas");
+        lista.adiciona("Pedro");
+        lista.adiciona("Erik");
+        lista.adiciona("Fernando");
+
+        System.out.println(lista);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // import main.java.com.biblioteca.model.Membro;
 // import main.java.com.biblioteca.model.Livro;
 // import java.util.Scanner;
