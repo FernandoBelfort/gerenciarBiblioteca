@@ -1,8 +1,5 @@
 package main.java.com.biblioteca;
 import main.java.com.biblioteca.view.MembroView;
-
-import java.net.ConnectException;
-import java.sql.DriverManager;
 import java.util.UUID;
 
 public class App{
@@ -15,15 +12,6 @@ public class App{
     }
     
     public static void main(String[] args){
-
-        //driver de conexao
-        try {
-            Class.forName("main.java.com.biblioteca.resource");
-            Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost/banco", "usuario", "senha");
-        } catch (ClassNotFoundException e) {
-            System.out.println("Driver do banco de dados não localizado");
-            //e.printStackTrace();
-        }
 
         //criacao dos id complexos
         UUID uniqueID1 = UUID.randomUUID();
