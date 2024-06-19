@@ -1,9 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package br.com.biblioteca.views;
 
+import br.com.biblioteca.ilib.UsersDAOImpl;
+import br.com.biblioteca.interfaces.UsersDAO;
 import java.awt.Color;
 
 /**
@@ -11,6 +9,8 @@ import java.awt.Color;
  * @author ALEXANDRE
  */
 public class UpUsers extends javax.swing.JPanel {
+
+    
 
     /**
      * Creates new form Principal
@@ -21,8 +21,8 @@ public class UpUsers extends javax.swing.JPanel {
     }
     
     private void InitStyles(){
-        nome.putClientProperty("FlatLaf.styleClass", "large");
-        nome.setForeground(Color.black);
+        nameLbl.putClientProperty("FlatLaf.styleClass", "large");
+        nameLbl.setForeground(Color.black);
     }
 
     /**
@@ -36,14 +36,14 @@ public class UpUsers extends javax.swing.JPanel {
 
         bg = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        nome = new javax.swing.JLabel();
-        Text1 = new javax.swing.JTextField();
-        nome1 = new javax.swing.JLabel();
-        nome2 = new javax.swing.JLabel();
-        nome3 = new javax.swing.JLabel();
-        Text3 = new javax.swing.JTextField();
-        Text4 = new javax.swing.JTextField();
-        Text5 = new javax.swing.JTextField();
+        nameLbl = new javax.swing.JLabel();
+        nameTxt = new javax.swing.JTextField();
+        enderecoLbl = new javax.swing.JLabel();
+        emalLbl = new javax.swing.JLabel();
+        telefoneLbl = new javax.swing.JLabel();
+        apMTxt = new javax.swing.JTextField();
+        endTxt = new javax.swing.JTextField();
+        phoneTxt = new javax.swing.JTextField();
         button = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(750, 430));
@@ -53,21 +53,25 @@ public class UpUsers extends javax.swing.JPanel {
 
         jLabel1.setText("Registrar Usuario");
 
-        nome.setText("Nome");
+        nameLbl.setText("Nome");
 
-        Text1.setText("jTextField1");
+        nameTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameTxtActionPerformed(evt);
+            }
+        });
 
-        nome1.setText("Endereço");
+        enderecoLbl.setText("Endereço");
 
-        nome2.setText("Email");
+        emalLbl.setText("Email");
 
-        nome3.setText("Telefone");
+        telefoneLbl.setText("Telefone");
 
-        Text3.setText("jTextField1");
-
-        Text4.setText("jTextField1");
-
-        Text5.setText("jTextField1");
+        phoneTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                phoneTxtActionPerformed(evt);
+            }
+        });
 
         button.setBackground(new java.awt.Color(18, 90, 173));
         button.setText("Registrar");
@@ -89,55 +93,59 @@ public class UpUsers extends javax.swing.JPanel {
                     .addGroup(bgLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(Text1)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, bgLayout.createSequentialGroup()
-                                    .addGap(6, 6, 6)
-                                    .addComponent(nome))
-                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE))
-                            .addComponent(nome1))
-                        .addGap(79, 79, 79)
-                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(Text5, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nome3)
-                            .addComponent(nome2)
-                            .addComponent(Text3, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(bgLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(enderecoLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(nameLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(nameTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)))
+                                .addGap(94, 94, 94)
+                                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(bgLayout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(emalLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(apMTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(bgLayout.createSequentialGroup()
-                        .addGap(238, 238, 238)
-                        .addComponent(button, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(524, Short.MAX_VALUE))
+                        .addGap(233, 233, 233)
+                        .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(phoneTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(telefoneLbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(button, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(539, Short.MAX_VALUE))
             .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(bgLayout.createSequentialGroup()
                     .addGap(10, 10, 10)
-                    .addComponent(Text4)
-                    .addGap(762, 762, 762)))
+                    .addComponent(endTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(842, Short.MAX_VALUE)))
         );
         bgLayout.setVerticalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(bgLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nameTxt)
+                    .addComponent(apMTxt))
+                .addGap(7, 7, 7)
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(emalLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(nameLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
+                .addGap(47, 47, 47)
+                .addComponent(phoneTxt)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nome)
-                    .addComponent(nome2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Text1)
-                    .addComponent(Text3))
-                .addGap(31, 31, 31)
-                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nome1)
-                    .addComponent(nome3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Text5)
-                .addGap(65, 65, 65)
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(telefoneLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                    .addComponent(enderecoLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
                 .addComponent(button, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(212, 212, 212))
             .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(bgLayout.createSequentialGroup()
                     .addGap(163, 163, 163)
-                    .addComponent(Text4)
+                    .addComponent(endTxt)
                     .addGap(300, 300, 300)))
         );
 
@@ -158,21 +166,59 @@ public class UpUsers extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionPerformed
-        // TODO add your handling code here:
+        String name = nameTxt.getText();
+        String apE = endTxt.getText();
+        String apM = apMTxt.getText();
+        String tel = phoneTxt.getText();
+        
+        //Validação para os campo
+        if(name.isEmpty() || apE.isEmpty() || apM.isEmpty() || tel.isEmpty()){
+           javax.swing.JOptionPane.showMessageDialog(this, "Deve preencher todos os campos\n", "AVISO", javax.swing.JOptionPane.ERROR_MESSAGE);
+           nameTxt.requestFocus();
+           return;
+        }
+        
+        br.com.biblioteca.models.Users user = new br.com.biblioteca.models.Users();
+        user.setNome(name);
+        user.setEndereco(apE);
+        user.setTelefone(tel);
+        user.setEmail(apM);
+        
+        try {
+            UsersDAO dao = new UsersDAOImpl();
+            dao.registrar(user); 
+            
+            javax.swing.JOptionPane.showMessageDialog(this, "Usuario registrado\n", "AVISO", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            nameTxt.setText("");
+            endTxt.setText("");
+            apMTxt.setText("");
+            phoneTxt.setText("");
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+            javax.swing.JOptionPane.showMessageDialog(this, "Ocorreu um erro no usuario\n", "AVISO", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_buttonActionPerformed
+
+    private void phoneTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_phoneTxtActionPerformed
+
+    private void nameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameTxtActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Text1;
-    private javax.swing.JTextField Text3;
-    private javax.swing.JTextField Text4;
-    private javax.swing.JTextField Text5;
+    private javax.swing.JTextField apMTxt;
     private javax.swing.JPanel bg;
     private javax.swing.JButton button;
+    private javax.swing.JLabel emalLbl;
+    private javax.swing.JTextField endTxt;
+    private javax.swing.JLabel enderecoLbl;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel nome;
-    private javax.swing.JLabel nome1;
-    private javax.swing.JLabel nome2;
-    private javax.swing.JLabel nome3;
+    private javax.swing.JLabel nameLbl;
+    private javax.swing.JTextField nameTxt;
+    private javax.swing.JTextField phoneTxt;
+    private javax.swing.JLabel telefoneLbl;
     // End of variables declaration//GEN-END:variables
 }

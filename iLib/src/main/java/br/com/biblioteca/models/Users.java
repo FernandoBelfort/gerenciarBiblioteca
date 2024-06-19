@@ -12,8 +12,9 @@ public class Users {
     private int id;
     private String nome;
     private String endereco;
-    private String mail;
-    private int telefone;
+    private String telefone;
+    private String email;
+    
 
     public int getId() {
         return id;
@@ -39,19 +40,19 @@ public class Users {
         this.endereco = endereco;
     }
 
-    public String getMail() {
-        return mail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public int getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(int telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
     

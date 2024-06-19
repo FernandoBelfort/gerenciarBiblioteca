@@ -1,13 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.com.biblioteca.ilib;
 
 import br.com.biblioteca.db.Database;
 import br.com.biblioteca.interfaces.UsersDAO;
 import br.com.biblioteca.models.Users;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,9 +18,12 @@ public class UsersDAOImpl extends Database implements UsersDAO{
     public void registrar(Users user) throws Exception {
         try{
             this.Conectar();
-            PreparedStatement st = this.conexion.prepareStatement("INSER INTO users(id, name, endereco, email, telefone) VALUES(?, ?, ?, ?, ?);");
-            //st.setString(1, user.getId());
-           // st.setString(2, user.getName());
+            PreparedStatement st = this.conexion.prepareStatement("INSERT INTO users(name, endereco, telefone, email) VALUES(?, ?, ?);");
+            st.setString(1, user.getNome());
+            st.setString(2, user.getEndereco());
+            st.setString(3, user.getTelefone());
+            st.executeUpdate();
+            st.close();
         } catch(Exception e){
             throw e;
         } finally {
@@ -42,7 +43,30 @@ public class UsersDAOImpl extends Database implements UsersDAO{
 
     @Override
     public List<Users> listar() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<Users> lista = null;
+        try{
+            this.Conectar();
+            PreparedStatement st = this.conexion.prepareStatement("SELECT * FROM users;");
+            
+            lista = new ArrayList();
+            ResultSet rs = st.executeQuery();
+            while(rs.next()){
+                Users user = new Users();
+                user.setId(rs.getInt("id"));
+                user.setNome(rs.getString("name"));
+                user.setEndereco(rs.getString("endereco"));
+                user.setTelefone(rs.getString("telefone"));
+                user.setEmail(rs.getString("email"));
+                lista.add(user);
+            }
+            rs.close();
+            st.close();
+        } catch(Exception e){
+            throw e;
+        } finally {
+            this.Encerrar();
+        }
+        return lista;
     }
     
 }

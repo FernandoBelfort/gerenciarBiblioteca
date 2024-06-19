@@ -54,7 +54,7 @@ public class Dashboard extends javax.swing.JFrame {
         ShowJPanel(new Principal());
     }
     
-    private void ShowJPanel(JPanel p){
+    public static void ShowJPanel(JPanel p){
         p.setSize(750, 430);
         p.setLocation(0, 0);
         
@@ -286,6 +286,8 @@ public class Dashboard extends javax.swing.JFrame {
 
         content.setBackground(new java.awt.Color(255, 255, 255));
 
+        content.setLayout(new java.awt.BorderLayout());
+
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
@@ -294,7 +296,7 @@ public class Dashboard extends javax.swing.JFrame {
         );
         contentLayout.setVerticalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 380, Short.MAX_VALUE)
+            .addGap(0, 329, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
@@ -318,10 +320,10 @@ public class Dashboard extends javax.swing.JFrame {
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundLayout.createSequentialGroup()
-                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(backgroundLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(mensagem, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                        .addComponent(mensagem, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -414,7 +416,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JButton btn_reports;
     private javax.swing.JButton btn_returns;
     private javax.swing.JButton btn_users;
-    private javax.swing.JPanel content;
+    private static javax.swing.JPanel content;
     private javax.swing.JLabel dataText;
     private javax.swing.JPanel header;
     private javax.swing.JLabel jSeparator;
